@@ -1,4 +1,4 @@
-package sample;
+package SERVER;
 
 public class Controller {
 }
