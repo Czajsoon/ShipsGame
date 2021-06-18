@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class ServerMake {
     private ServerSocket serverSocket;
-    private ServerChatThread serverChatThread;
     private ArrayList<Socket> playersSockets = new ArrayList<>();
 
     public ServerMake(int port){

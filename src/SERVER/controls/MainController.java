@@ -31,7 +31,7 @@ public class MainController {
     @FXML
     private void StartServ(ActionEvent event){
         if(PortServer.getText().isEmpty()){
-            ServerLogs.appendText("Port is empty! Insert port server!\n");
+            ServerLogs.appendText(new Date() + " || Port is empty! Insert port server!\n");
         }
         else{
             ServerStartButton.setDisable(true);
@@ -54,8 +54,5 @@ public class MainController {
         }
     }
 
-    private void connectPlayer(){
-
-    }
 
 }

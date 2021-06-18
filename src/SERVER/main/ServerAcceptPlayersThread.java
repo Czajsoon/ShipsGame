@@ -3,6 +3,8 @@ package SERVER.main;
 import javafx.application.Platform;
 import javafx.scene.control.TextArea;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -12,53 +14,63 @@ import java.util.Date;
 public class ServerAcceptPlayersThread {
     private ServerSocket socketServer;
     private ArrayList<Socket> playersSockets;
+    private ArrayList<String> nicknames;
+    private TextArea loggServ;
 
     public ServerAcceptPlayersThread(ServerSocket socketServer, ArrayList<Socket> playersSockets, TextArea loggServ){
         this.socketServer = socketServer;
         this.playersSockets = playersSockets;
+        this.loggServ = loggServ;
+        serverThread();
+    }
+
+    private void serverThread(){
         new Thread(() ->{
+            int i = 1;
             try{
                 while (playersSockets.size() != 2){
-                    Socket client = socketServer.accept();
+                    Socket client = this.socketServer.accept();
                     playersSockets.add(client);
-                    loggServ.appendText(new Date() + " new client connected!");
+                    loggServ.appendText(new Date() + " || New client " + playersSockets.size() + " connected!\n");
+                }
+                for(Socket s : playersSockets){
+                    serverReciveMessages(s,i);
+                    i++;
                 }
             }
             catch(IOException ex){
-
+                ex.getMessage();
             }
         }).start();
-//        startTask();
     }
 
-    public void startTask(){
-        Runnable task = new Runnable() {
-            @Override
-            public void run() {
-                runTask();
-            }
-        };
-        Thread backgroundThread = new Thread(task);
-        backgroundThread.setDaemon(true);
-        backgroundThread.start();
-    }
-
-    public void runTask(){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                while(playersSockets.size() != 2){
-//            try{
-//                Socket client = serverSocket.accept();
-//                playersSockets.add(client);
-//                loggServer.appendText("New client connected!");
-//                serverChatThread.startTask();
-//            }
-//            catch (IOException ex){
-//                ex.getMessage();
-//            }
+    private void serverReciveMessages(Socket client,int clientNumber){
+        new Thread( () ->{
+            try{
+                DataInputStream din = new DataInputStream(client.getInputStream());
+                while(!socketServer.isClosed()){
+                    String message = din.readUTF();
+                    loggServ.appendText(new Date() + " || Player " + clientNumber + " message: " + message + "\n");
+                    for(Socket s :playersSockets){
+                        if(client != s){
+                            sentToOtherPlayerMessage(s,message);
+                        }
+                    }
                 }
             }
-        });
+            catch(IOException ex){
+                ex.getMessage();
+            }
+        }).start();
+    }
+
+    public void sentToOtherPlayerMessage(Socket oponentSocket,String message){
+        try{
+            DataOutputStream dout = new DataOutputStream(oponentSocket.getOutputStream());
+            dout.writeUTF("Oponent: " + message);
+        }
+        catch(IOException ex){
+            ex.getMessage();
+        }
     }
 }
