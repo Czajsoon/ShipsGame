@@ -8,33 +8,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainPane" prefHeight="487.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CLIENT.Controls.ClientController">
+<AnchorPane fx:id="mainPane" prefHeight="401.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CLIENT.Controls.ClientController">
    <children>
-      <Text layoutX="199.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Capitan! Ahoj!" textAlignment="CENTER" wrappingWidth="204.13671875">
+      <Text layoutX="308.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome Capitan! Ahoj!" textAlignment="CENTER" wrappingWidth="204.13671875">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
-      <VBox alignment="CENTER" layoutX="5.0" layoutY="89.0" prefHeight="356.0" prefWidth="593.0" spacing="30.0">
+      <VBox alignment="CENTER" layoutX="114.0" layoutY="89.0" prefHeight="356.0" prefWidth="593.0" spacing="30.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your nickname Capitan" textAlignment="CENTER" wrappingWidth="214.208984375">
-               <font>
-                  <Font name="Calibri" size="14.0" />
-               </font>
-            </Text>
-            <TextField fx:id="nicknameField" alignment="CENTER" prefHeight="25.0" prefWidth="530.0" promptText="Nickname">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets left="60.0" right="60.0" />
-               </VBox.margin>
-            </TextField>
-            <Text fx:id="nicknameWarning" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname Warning" textAlignment="CENTER" visible="false">
-               <VBox.margin>
-                  <Insets top="-30.0" />
-               </VBox.margin>
-            </Text>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enter IP server where the battle will be..." textAlignment="CENTER" wrappingWidth="233.208984375">
                <font>
                   <Font name="Calibri" size="14.0" />

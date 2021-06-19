@@ -22,22 +22,11 @@ public class ClientController {
     AnchorPane mainPane;
 
     @FXML
-    Text nicknameWarning;
-
-    @FXML
-    public TextField nicknameField;
-
-    @FXML
     Button joinButton;
 
     @FXML
     private void actionJoinButton(ActionEvent event){
-        if(nicknameField.getText().isEmpty()){
 
-            nicknameWarning.setVisible(true);
-            nicknameWarning.setText("↑ Input nickname first Capitan! ↑");
-        }
-        else{
             try{
                 mainPane.getChildren().clear();
                 mainPane.getChildren().add(FXMLLoader.load(getClass().getResource("../GUI/GameGui.fxml")));
@@ -45,6 +34,7 @@ public class ClientController {
             catch (IOException ex){
                 ex.getMessage();
             }
-        }
+
     }
+
 }

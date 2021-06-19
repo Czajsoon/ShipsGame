@@ -19,7 +19,7 @@ public class CLIENT extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../GUI/clientGUI.fxml"));
         primaryStage.setTitle("Ships Game");
-        primaryStage.setScene(new Scene(root, 603, 487));
+        primaryStage.setScene(new Scene(root, 820, 450));
         primaryStage.show();
     }
 }

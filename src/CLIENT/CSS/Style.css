@@ -1,0 +1,7 @@
+.ButtonC{
+    -fx-background-color: WHITE;
+}
+
+.ButtonC:hover{
+    -fx-background-color: BLACK;
+}
